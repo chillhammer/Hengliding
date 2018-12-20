@@ -10,6 +10,7 @@ namespace Racing.Collidables {
 			applyGeneralEffect(racer);
 			applySpecificEffect(racer);
 		}
+		
 		//Applies effects common to all hinderances or boosts
 		public abstract void applyGeneralEffect(Racer racer);
 		//Applies effects of that specific hinderance or boost
