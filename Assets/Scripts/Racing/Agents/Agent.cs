@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Racing.Agents {
 	public abstract class Agent {
 
-		protected static readonly Vector3 FLAP_VECTOR = new Vector3(1, 1f, 0);
+		//TODO combine transform.forward with Agent.FLAP_VECTOR to make more realistic / intuitive flap behavior.
+		// protected static readonly Vector3 FLAP_VECTOR = new Vector3(1, 0.5f, 0);
 
 		[SerializeField]
 		protected Racer racer;
@@ -17,6 +18,7 @@ namespace Racing.Agents {
 		}
 
 		public abstract Vector3 getVelocityChange();
+		public abstract float getInclineChange();
 
 		public void disableInput() {
 			inputEnabled = false;

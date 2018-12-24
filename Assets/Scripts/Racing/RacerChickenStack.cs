@@ -17,16 +17,26 @@ namespace Racing {
 			return chickenStack.Average(chicken => chicken.maxSpeed);
 		}
 
-		public float getAcceleration() {
-			return chickenStack.Average(chicken => chicken.acceleration);
+		public float getFlapStrength() {
+			return chickenStack.Average(chicken => chicken.flapStrength);
 		}
 
-		public float getDrag() {
-			return chickenStack.Average(chicken => chicken.drag);
+		public float getDrag(float forwardsSpeed) {
+			//Lift = constants * velocity^2 * sa as viewed from the front (which == racerchicken.drag, so we sum)
+			return chickenStack.Sum(chicken => chicken.drag) * forwardsSpeed * forwardsSpeed;
 		}
 
 		public Vector3 getGravity() {
 			return RacerChickenStack.GRAVITY * chickenStack.Sum(chicken => chicken.weight);
+		}
+
+		public float getAngularAcceleration() {
+			return chickenStack.Average(chicken => chicken.turnRate);
+		}
+
+		public float getLift(float incline, float forwardsSpeed) {
+			//Lift = constants * velocity^2 * wing surface area
+			return chickenStack.Sum(chicken => chicken.wingArea) * forwardsSpeed * forwardsSpeed;
 		}
 	}
 }

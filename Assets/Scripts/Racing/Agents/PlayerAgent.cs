@@ -4,6 +4,8 @@ using Racing.Collidables;
 namespace Racing.Agents {
 	public class PlayerAgent : Agent {
 
+
+
 		public PlayerAgent(Racer racer) : base(racer) { }
 
 		public override Vector3 getVelocityChange() {
@@ -13,15 +15,28 @@ namespace Racing.Agents {
 				return velocity;
 			}
 
-			if (Input.GetAxis("SpaceBar") > 0) {
+			if (Input.GetButtonDown("SpaceBar")) {
 				//Currently, velocity limits only consider forward motion.
 				if (racer.rb.velocity.x < racer.chickenStack.getMaxSpeed()) {
-					Debug.Log("Asdf");
-					velocity += Agent.FLAP_VECTOR * racer.chickenStack.getAcceleration() * Time.deltaTime;
+					velocity += racer.transform.forward * racer.chickenStack.getFlapStrength() * Time.deltaTime;
 				}
 			}
 
 			return velocity;
+		}
+
+		public override float getInclineChange() {
+			float inclineChange = 0;
+
+			if(!inputEnabled) {
+				return 0;
+			}
+
+			if (Input.GetAxis("Vertical") != 0) {
+				inclineChange = Input.GetAxis("Vertical") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
+			}
+
+			return inclineChange;
 		}
 	}
 }

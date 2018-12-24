@@ -10,5 +10,10 @@ namespace Racing.Agents {
 			return new Vector3(0, 0, 0);
 		}
 
+		public override float getInclineChange() {
+			return 0;
+		}
+
+
 	}
 }
