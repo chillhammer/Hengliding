@@ -10,12 +10,11 @@ namespace Racing.Agents {
 
 		public override Vector3 getVelocityChange() {
 			Vector3 velocity = new Vector3(0, 0, 0);
-
 			if (!inputEnabled) {
 				return velocity;
 			}
 
-			if (Input.GetButtonDown("SpaceBar")) {
+			if (Input.GetButton("SpaceBar")) {
 				//Currently, velocity limits only consider forward motion.
 				if (racer.rb.velocity.x < racer.chickenStack.getMaxSpeed()) {
 					velocity += racer.transform.forward * racer.chickenStack.getFlapStrength() * Time.deltaTime;

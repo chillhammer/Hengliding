@@ -21,7 +21,7 @@ namespace Racing.Agents {
 		public abstract float getInclineChange();
 
 		public void disableInput() {
-			inputEnabled = false;
+			inputEnabled = true;
 		}
 
 		public void enableInput() {

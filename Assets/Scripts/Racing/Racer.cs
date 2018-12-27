@@ -43,15 +43,17 @@ namespace Racing {
 			rb.AddForce(chickenStack.getGravity());
 
 			//Speed for the purposes of calculating lift is the forward velocity
-			float lift = chickenStack.getLift(incline, getForwardSpeed());
+			//float lift = chickenStack.getLift(incline, getForwardSpeed());
 			// Vector3 unitLift = Quaternion.AngleAxis(incline, transform.right) * transform.up ;
-			Vector3 unitLift = transform.up;
-			rb.AddForce(lift * unitLift);
+			//Vector3 unitLift = transform.up;
+			//rb.AddForce(lift * unitLift);
 
 			Debug.DrawLine(transform.position, transform.position + (transform.forward * getForwardSpeed()), Color.blue, 0, false);
-			Debug.DrawLine(transform.position, transform.position + unitLift * lift, Color.green, 0, false);
+			//Debug.DrawLine(transform.position, transform.position + unitLift * lift, Color.green, 0, false);
 			Debug.DrawLine(transform.position, transform.position + chickenStack.getGravity(), Color.red, 0, false);
-			Debug.DrawLine(transform.position, transform.position + rb.velocity, Color.white, 0, false);
+
+
+            Debug.DrawLine(transform.position, transform.position + rb.velocity, Color.white, 0, false);
 			Debug.Log("Airspeed: " + getForwardSpeed());
 		}
 
