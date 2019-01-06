@@ -31,6 +31,7 @@ namespace Racing {
 		}
 
 		void Update() {
+			//Rotate the model based on what the agent has requested
 			float inclineChange = agent.getInclineChange();
 			this.transform.Rotate(Vector3.right * inclineChange);
 			incline += inclineChange;
@@ -69,6 +70,7 @@ namespace Racing {
 
 			agent.disableInput();
 
+			//Lerp between the speeds
 			while (progress > timeToAdjustSpeed) {
 				float smoothProgress = Mathf.SmoothStep(0.0f, 1.0f, progress / timeToAdjustSpeed);
 				rb.velocity = Vector3.Lerp(originalVelocity, targetVelocity, smoothProgress);
