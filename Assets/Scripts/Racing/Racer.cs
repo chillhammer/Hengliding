@@ -7,7 +7,10 @@ using UnityEngine;
 namespace Racing {
 	public class Racer : MonoBehaviour {
 
+		//When a collision happens, how long does the interpolation happen over
 		private const float DEFAULT_TIME_TO_ADJUST_SPEED = 0.5f;
+		//How strong are chickens' passive acceleration, compared to active flapping.
+		private static readonly float PASSIVE_FLAP_SCALER = 150f;
 
 		//Shorthand
 		public Rigidbody rb;
@@ -23,7 +26,7 @@ namespace Racing {
 			//TODO Just for testing. Assign this in the factory.
 			agent = new PlayerAgent(this);
 			chickenStack = new RacerChickenStack(new List<RacerChicken>(){
-				new RacerChicken(50, 60, 0.004f, 2f, 2f, 50)
+				new RacerChicken(50, 60, 0.004f, 2f, 1.9f, 50)
 			});
 		}
 
@@ -38,19 +41,23 @@ namespace Racing {
 		}
 
 		protected void applyFlightForces() {
+			//slow for drag
 			rb.velocity *= (1 - chickenStack.getDrag(rb.velocity.magnitude));
-			//Someone better than me at 3d math could re-do this with dot products...
-			rb.velocity = new Vector3(rb.velocity.x, chickenStack.getNetGravity(), rb.velocity.z);
-			// Debug.Log("speed: " + rb.velocity.magnitude);
-			if (rb.velocity.magnitude < chickenStack.getMaxSpeed()) {
-				rb.velocity += new Vector3(chickenStack.getFlapStrength() / 150, 0, 0);
-			}
 
-			// Calculate velocity change from angle. This involves a fair amount of fudging
-			float xBoost = Mathf.Sin((Mathf.PI / 180f) * incline * 2);
-			float yBoost = -Mathf.Cos((Mathf.PI / 180f) * (incline * 2 + 180));
-			rb.velocity += new Vector3(xBoost, yBoost, 0);
-			Debug.Log("X: " + xBoost +",   Y: " + yBoost);
+			//Applies gravity, subtracts lift, but subtracts less lift when you're diving
+			float gravity = chickenStack.getNetGravity(incline);
+			rb.velocity += new Vector3(0, gravity, 0);
+
+			//This fakes the forward acceleration lift would provide when diving.
+			//The boost caps out at about 60 degrees i think. at least on my test chicken. idk how that compares to reality though :p
+			float xBoost = Mathf.Cos((Mathf.PI / 180f) * incline);
+			Debug.Log(xBoost * gravity * -2);
+			rb.velocity += new Vector3(-2 * xBoost * gravity, 0, 0);
+
+			//Passive flap acceleration
+			if (rb.velocity.magnitude < chickenStack.getMaxSpeed()) {
+				rb.velocity += transform.forward * (chickenStack.getFlapStrength() / Racer.PASSIVE_FLAP_SCALER);
+			}
 
 		}
 

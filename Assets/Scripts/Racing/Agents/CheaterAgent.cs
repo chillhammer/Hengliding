@@ -5,7 +5,7 @@ namespace Racing.Agents {
 
 		public CheaterAgent(Racer racer) : base(racer) { }
 
-		//It's just, like, real fast
+		//It just, like, goes really fast forwards 
 		public override Vector3 getVelocityChange() {
 			return racer.transform.forward * 10;
 		}

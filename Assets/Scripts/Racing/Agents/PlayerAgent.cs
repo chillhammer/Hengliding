@@ -33,7 +33,7 @@ namespace Racing.Agents {
 			if (Input.GetAxis("Vertical") != 0) {
 				//clamp angle to [0, 90]
 				inclineChange = Input.GetAxis("Vertical") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
-				if( (racer.incline < 0 && inclineChange < 0) || (racer.incline > 90 && inclineChange > 0) ) {
+				if( (racer.incline + inclineChange < 0) || (racer.incline + inclineChange > 90) ) {
 					inclineChange = 0;
 				}
 			}

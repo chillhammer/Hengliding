@@ -27,12 +27,14 @@ namespace Racing {
 			return chickenStack.Average(chicken => chicken.turnRate);
 		}
 
-		//Net gravity is our faked gravity + our faked lift, gaurenteed to be pointing down. 
-		public float getNetGravity() {
-			return -1 * getGravity() / getLift();
+		//Net gravity is our faked gravity after accounting for lift and angle. 
+		//The logic here is that lift reduces gravity by less as you enter a dive.
+		public float getNetGravity(float incline) {
+			float angleLiftScalar = Mathf.Cos((Mathf.PI / 180f) * (incline));
+			return -1 * (getWeight() - (getLift() * angleLiftScalar));
 		}
 
-		private float getGravity() {
+		private float getWeight() {
 			return chickenStack.Sum(chicken => chicken.weight);
 		}
 
