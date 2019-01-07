@@ -33,15 +33,9 @@ namespace Racing {
 
 		void Update() {
 			//Rotate the model based on what the agent has requested
-			float pitchChange = agent.getInclineChange();
-			this.transform.Rotate(Vector3.right * pitchChange);
-			pitch += pitchChange;
-
-			float yawChange = agent.getYawChange();
-			this.transform.Rotate(Vector3.up * yawChange);
-			yaw += yawChange;
-
-			Debug.Log("Pitch: " + pitch + ". Yaw: " + yaw);
+			pitch += agent.getInclineChange();
+			yaw += agent.getYawChange();
+			this.transform.eulerAngles = new Vector3(pitch, yaw + 90, 0);
 
 			applyFlightForces();
 
