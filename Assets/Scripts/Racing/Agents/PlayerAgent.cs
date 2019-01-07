@@ -26,19 +26,38 @@ namespace Racing.Agents {
 		public override float getInclineChange() {
 			float inclineChange = 0;
 
-			if(!inputEnabled) {
+			if (!inputEnabled) {
 				return 0;
 			}
 
 			if (Input.GetAxis("Vertical") != 0) {
 				//clamp angle to [0, 90]
 				inclineChange = Input.GetAxis("Vertical") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
-				if( (racer.incline + inclineChange < 0) || (racer.incline + inclineChange > 90) ) {
+				if ((racer.pitch + inclineChange < 0) || (racer.pitch + inclineChange > 90)) {
 					inclineChange = 0;
 				}
 			}
 
 			return inclineChange;
+		}
+
+		public override float getYawChange() {
+			float yawChange = 0;
+
+			if (!inputEnabled) {
+				return 0;
+			}
+
+			//clamp angle to [45,45]
+			if (Input.GetAxis("Horizontal") != 0) {
+				yawChange = Input.GetAxis("Horizontal") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
+				if ((racer.yaw + yawChange < -45) || (racer.yaw + yawChange > 45)) {
+					yawChange = 0;
+				}
+
+			}
+
+			return yawChange;
 		}
 	}
 }

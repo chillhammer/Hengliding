@@ -19,6 +19,7 @@ namespace Racing.Agents {
 
 		public abstract Vector3 getVelocityChange();
 		public abstract float getInclineChange();
+		public abstract float getYawChange();
 
 		public void disableInput() {
 			inputEnabled = true;

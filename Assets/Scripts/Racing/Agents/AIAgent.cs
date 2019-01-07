@@ -14,6 +14,8 @@ namespace Racing.Agents {
 			return 0;
 		}
 
-
+		public override float getYawChange() {
+			return 0;
+		}
 	}
 }

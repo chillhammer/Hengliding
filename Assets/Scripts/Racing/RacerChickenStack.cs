@@ -29,8 +29,8 @@ namespace Racing {
 
 		//Net gravity is our faked gravity after accounting for lift and angle. 
 		//The logic here is that lift reduces gravity by less as you enter a dive.
-		public float getNetGravity(float incline) {
-			float angleLiftScalar = Mathf.Cos((Mathf.PI / 180f) * (incline));
+		public float getNetGravity(float pitch) {
+			float angleLiftScalar = Mathf.Cos((Mathf.PI / 180f) * (pitch));
 			return -1 * (getWeight() - (getLift() * angleLiftScalar));
 		}
 

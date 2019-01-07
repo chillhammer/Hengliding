@@ -1,6 +1,6 @@
 
 namespace Racing.Collidables {
-	public abstract class Vulture : Hinderance {
+	public class Vulture : Hinderance {
 
 		private const float BOOST_STRENGTH = 0.5f;
 

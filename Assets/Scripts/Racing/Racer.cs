@@ -15,7 +15,8 @@ namespace Racing {
 		//Shorthand
 		public Rigidbody rb;
 		public RacerChickenStack chickenStack;
-		public float incline = 0;
+		public float pitch = 0;
+		public float yaw = 0;
 
 		[SerializeField]
 		private Agent agent;
@@ -32,9 +33,15 @@ namespace Racing {
 
 		void Update() {
 			//Rotate the model based on what the agent has requested
-			float inclineChange = agent.getInclineChange();
-			this.transform.Rotate(Vector3.right * inclineChange);
-			incline += inclineChange;
+			float pitchChange = agent.getInclineChange();
+			this.transform.Rotate(Vector3.right * pitchChange);
+			pitch += pitchChange;
+
+			float yawChange = agent.getYawChange();
+			this.transform.Rotate(Vector3.up * yawChange);
+			yaw += yawChange;
+
+			Debug.Log("Pitch: " + pitch + ". Yaw: " + yaw);
 
 			applyFlightForces();
 
@@ -46,14 +53,13 @@ namespace Racing {
 			rb.velocity *= (1 - chickenStack.getDrag(rb.velocity.magnitude));
 
 			//Applies gravity, subtracts lift, but subtracts less lift when you're diving
-			float gravity = chickenStack.getNetGravity(incline);
+			float gravity = chickenStack.getNetGravity(pitch);
 			rb.velocity += new Vector3(0, gravity, 0);
 
 			//This fakes the forward acceleration lift would provide when diving.
 			//The boost caps out at about 60 degrees i think. at least on my test chicken. idk how that compares to reality though :p
-			float xBoost = Mathf.Cos((Mathf.PI / 180f) * incline);
-			Debug.Log(xBoost * gravity * -2);
-			rb.velocity += new Vector3(-2 * xBoost * gravity, 0, 0);
+			float xBoost = Mathf.Cos((Mathf.PI / 180f) * pitch);
+			rb.velocity += transform.forward * -2 * xBoost * gravity;
 
 			//Passive flap acceleration
 			if (rb.velocity.magnitude < chickenStack.getMaxSpeed()) {
