@@ -4,6 +4,12 @@ using Racing.Collidables;
 namespace Racing.Agents {
 	public class PlayerAgent : Agent {
 
+		//Limits in degrees
+		private static readonly int MIN_PITCH = 0;
+		private static readonly int MAX_PITCH = 90;
+		private static readonly int MIN_YAW = -60;
+		private static readonly int MAX_YAW = 60;
+
 		public PlayerAgent(Racer racer) : base(racer) { }
 
 		public override Vector3 getVelocityChange() {
@@ -33,7 +39,7 @@ namespace Racing.Agents {
 			if (Input.GetAxis("Vertical") != 0) {
 				//clamp angle to [0, 90]
 				inclineChange = -1 * Input.GetAxis("Vertical") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
-				if ((racer.pitch + inclineChange < 0) || (racer.pitch + inclineChange > 90)) {
+				if ((racer.pitch + inclineChange < PlayerAgent.MIN_PITCH) || (racer.pitch + inclineChange > PlayerAgent.MAX_PITCH)) {
 					inclineChange = 0;
 				}
 			}
@@ -51,7 +57,7 @@ namespace Racing.Agents {
 			//clamp angle to [45,45]
 			if (Input.GetAxis("Horizontal") != 0) {
 				yawChange = Input.GetAxis("Horizontal") * racer.chickenStack.getAngularAcceleration() * Time.deltaTime;
-				if ((racer.yaw + yawChange < -45) || (racer.yaw + yawChange > 45)) {
+				if ((racer.yaw + yawChange < PlayerAgent.MIN_YAW) || (racer.yaw + yawChange > PlayerAgent.MAX_YAW)) {
 					yawChange = 0;
 				}
 
