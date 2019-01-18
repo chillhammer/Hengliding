@@ -6,6 +6,10 @@ namespace Racing
 {
     public class RaceControl : MonoBehaviour
     {
+        public Canvas uiCanvas;
+
+        public GameObject leaderboard;
+
         public RaceStateInput raceStateInput;
         public RaceState currentState = null;
         void Start()
@@ -22,6 +26,11 @@ namespace Racing
         public void chickenAtEnd()
         {
             raceStateInput.isPlayerAtEnd = true;
+        }
+
+        public void displayLeaderboard()
+        {
+            Instantiate(leaderboard, uiCanvas.transform);
         }
     }
 }

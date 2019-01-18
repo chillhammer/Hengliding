@@ -10,12 +10,12 @@ namespace Racing
         {
             //Debug.Log("RacingState");
             if (RaceInput.isPlayerAtEnd) {
+                RaceInput.raceControl.displayLeaderboard();
                 changeState();
             }
         }
         public void changeState()
         {
-
             RaceInput.raceControl.currentState = new RaceEndState(RaceInput);
         }
     }
