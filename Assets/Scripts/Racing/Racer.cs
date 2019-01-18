@@ -19,7 +19,7 @@ namespace Racing {
 		public float yaw = 0;
 
 		[SerializeField]
-		private Agent agent;
+		public Agent agent;
 
 		void Start() {
 			rb = GetComponent<Rigidbody>();
