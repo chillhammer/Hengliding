@@ -168,10 +168,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8279269569837443053}
     m_Modifications:
-    - target: {fileID: 100000, guid: c58b8d9ab733715498837cedae2260eb, type: 3}
-      propertyPath: m_Name
-      value: AliceChicken3WithWings
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c58b8d9ab733715498837cedae2260eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -228,8 +224,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c58b8d9ab733715498837cedae2260eb, type: 3}
+      propertyPath: m_Name
+      value: AliceChicken3WithWings
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c58b8d9ab733715498837cedae2260eb, type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37a36439007d6da46a97fc775a2a21ab, type: 2}
+    - target: {fileID: 2300000, guid: c58b8d9ab733715498837cedae2260eb, type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 37a36439007d6da46a97fc775a2a21ab, type: 2}
     m_RemovedComponents: []
