@@ -1,7 +1,9 @@
 using UnityEngine;
 
 namespace Racing {
+
 	public class RacerChicken {
+		
 		//At what velocity can you no longer flap?
 		public float maxSpeed;
 		//How much speed do you get per flap?

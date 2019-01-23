@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Racing
 {
-    public class RacingState : RaceState
+    public class RaceInProgressState : RaceState
     {
-        public RacingState(RaceStateInput raceInput) : base(raceInput) { }
+        public RaceInProgressState(RaceStateInput raceInput) : base(raceInput) { }
         override public void updateState()
         {
             //Debug.Log("RacingState");

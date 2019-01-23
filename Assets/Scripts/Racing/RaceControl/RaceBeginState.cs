@@ -13,7 +13,7 @@ namespace Racing
         }
         public void changeState()
         {
-            raceInput.raceControl.currentState = new RacingState(raceInput);
+            raceInput.raceControl.currentState = new RaceInProgressState(raceInput);
         }
     }
 }
