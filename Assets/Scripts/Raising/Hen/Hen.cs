@@ -23,7 +23,7 @@ namespace Raising {
 		void Update() {
 
 			if (Input.GetButtonDown("SpaceBar")) {
-				speed.increase(1);
+				StartCoroutine(speed.increase(1));
 			}
 
 			state.updateState();
