@@ -6,7 +6,7 @@ namespace Raising {
 
 	public class Stat {
 
-		private static readonly float STAT_INCREASE_ICON_TIME = 1.5f;
+		private static readonly float STAT_INCREASE_ICON_TIME = 1.0f;
 
 		public Hen hen;
 		public float value;
@@ -38,11 +38,11 @@ namespace Raising {
 				hen.transform
 			);
 
-			//TODO this doesn't work....
 			yield return Util.Lerp(Stat.STAT_INCREASE_ICON_TIME, progress => {
-				Debug.Log(progress);
-				icon.transform.position = Vector3.Lerp(startPos, endPos, progress);
+				icon.transform.position = Vector3.Lerp(startPos, endPos, Mathf.Pow(progress, 0.33f));
 			});
+
+			yield return new WaitForSeconds(0.5f);
 
 			Object.Destroy(icon);
 		}

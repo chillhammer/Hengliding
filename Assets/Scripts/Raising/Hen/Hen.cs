@@ -23,6 +23,7 @@ namespace Raising {
 		void Update() {
 
 			if (Input.GetButtonDown("SpaceBar")) {
+				Debug.Log("Speed: " + speed.value);
 				StartCoroutine(speed.increase(1));
 			}
 
