@@ -23,14 +23,14 @@ public class CameraController : MonoBehaviour {
 	private float maxZoomDistance = -2;    //The minimum distance allowed for the camera zoom.
 	private float rotMomentumDecayExp = 3;      //The rate at which the camera exponentially slows down its rotation.
 	private float rotMomentumDecayLin = 1.0f;   //The rate at which the camera linerally slows down its rotation.
-	private float linMomentumDecayExp = 1.5f;      //The rate at which the camera exponentially slows down its translation.
-	private float linMomentumDecayLin = 0.15f;      //The rate at which the camera linearally slows down its translation.
+	private float linMomentumDecayExp = 1.0f;      //The rate at which the camera exponentially slows down its translation.
+	private float linMomentumDecayLin = 0.09f;      //The rate at which the camera linearally slows down its translation.
 	private float rotateSpeed = 0.05f;      //The rate at which dragging adjusts the camera's rotational momentum.
 	private float translateSpeed = 0.01f;       //The rate at which dragging adjusts the camera's translational momentum.
 	public bool invertCameraX = false;  //Whether to invert the x axis when rotating the camera.
 	public bool invertCameraY = false;  //Whether to invert the y axis when rotating the camera.
 	public bool invertDragPan = false;  //Whether to invert the mouse dragging controls when sliding the camera around.
-	private float translateSpeedBorder = 1.0f;            //The rate at which the camera slides due to positioning the mouse around the edges of the screen.
+	private float translateSpeedBorder = 0.5f;            //The rate at which the camera slides due to positioning the mouse around the edges of the screen.
 	private float panBorderThickness = 10f; //The size of the border where the mouse will scroll.
 
 	private Vector3 lastMousePos = Vector3.zero;    //The previous position of the mouse, used to calculate dragging.

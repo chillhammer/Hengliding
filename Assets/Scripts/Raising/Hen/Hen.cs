@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 namespace Raising {
 
@@ -18,20 +19,31 @@ namespace Raising {
 
 			breed = HenBreed.RedStar;
 			speed = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+
+			StartCoroutine(wander());
 		}
 
 		void Update() {
-
-			if (Input.GetButtonDown("SpaceBar")) {
-				Debug.Log("Speed: " + speed.value);
-				StartCoroutine(speed.increase(1));
-			}
-
 			state.updateState();
 		}
 
+		private IEnumerator wander() {
+			while (true) {
+				yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+				transform.Rotate(new Vector3(0, Random.Range(0, 359), 0), Space.World);
+				yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
+				GetComponent<Rigidbody>().velocity += transform.right * 0.5f;
+				yield return new WaitForSeconds(Random.Range(1f, 2f));
+				GetComponent<Rigidbody>().velocity += new Vector3(0, 0, 0);
+				yield return new WaitForSeconds(Random.Range(3f, 6f));
+			}
+		}
+
 		void OnMouseDown() {
-			// GUI for stats
+			//TODO GUI for stats
+			Debug.Log("Speed: " + speed.value);
+			StartCoroutine(speed.increase(1));
+
 		}
 	}
 
