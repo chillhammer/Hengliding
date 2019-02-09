@@ -1,48 +1,43 @@
 fileFormatVersion: 2
-guid: 68507f039451d0d40a0a4238028828f6
+guid: 465dbf9832a6af94c8417098c97f2555
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Feeder
-    100004: Lid
-    100006: Armature
-    100008: Bone
-    100010: FeederBoard
-    100012: FeederHinge
-    400000: //RootNode
-    400002: Feeder
-    400004: Lid
-    400006: Armature
-    400008: Bone
-    400010: FeederBoard
-    400012: FeederHinge
-    2100000: unnamed
+    100000: Armature
+    100002: Bone
+    100004: Feeder
+    100006: //RootNode
+    100008: FeederHinge
+    100010: Lid
+    100012: LidHinges
+    400000: Armature
+    400002: Bone
+    400004: Feeder
+    400006: //RootNode
+    400008: FeederHinge
+    400010: Lid
+    400012: LidHinges
+    2100000: Hinge
     2100002: Lid
-    2100004: Hinge
-    2300000: //RootNode
-    2300002: Feeder
-    2300004: Lid
-    2300006: FeederBoard
-    2300008: FeederHinge
-    3300000: //RootNode
-    3300002: Feeder
-    3300004: Lid
-    3300006: FeederBoard
-    3300008: FeederHinge
-    4300000: Cube
+    2100004: unnamed
+    2300000: Feeder
+    2300002: FeederHinge
+    3300000: Feeder
+    3300002: FeederHinge
+    4300000: LidHinges
     4300002: Lid
-    4300004: Feeder
-    4300006: FeederHinge
-    4300008: FeederBoard
+    4300004: FeederHinge
+    4300006: Feeder
     7400000: Default Take
     7400002: Open
-    7400004: Close
+    7400004: CloseForRealsies
+    7400006: OpenForRealsies
     9500000: //RootNode
     13700000: Lid
+    13700002: LidHinges
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -102,7 +97,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

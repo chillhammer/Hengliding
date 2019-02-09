@@ -1,48 +1,43 @@
 fileFormatVersion: 2
-guid: 68507f039451d0d40a0a4238028828f6
+guid: e379151fdd415c044a01008a78e4f3fb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Feeder
-    100004: Lid
-    100006: Armature
-    100008: Bone
-    100010: FeederBoard
-    100012: FeederHinge
-    400000: //RootNode
-    400002: Feeder
-    400004: Lid
-    400006: Armature
-    400008: Bone
-    400010: FeederBoard
-    400012: FeederHinge
+    100000: Armature
+    100002: Bone
+    100004: Feeder
+    100006: //RootNode
+    100008: FeederBoard
+    100010: FeederHinge
+    100012: Lid
+    400000: Armature
+    400002: Bone
+    400004: Feeder
+    400006: //RootNode
+    400008: FeederBoard
+    400010: FeederHinge
+    400012: Lid
     2100000: unnamed
     2100002: Lid
     2100004: Hinge
-    2300000: //RootNode
-    2300002: Feeder
-    2300004: Lid
-    2300006: FeederBoard
-    2300008: FeederHinge
-    3300000: //RootNode
-    3300002: Feeder
-    3300004: Lid
-    3300006: FeederBoard
-    3300008: FeederHinge
-    4300000: Cube
-    4300002: Lid
-    4300004: Feeder
-    4300006: FeederHinge
-    4300008: FeederBoard
+    2300000: Feeder
+    2300002: FeederBoard
+    2300004: FeederHinge
+    3300000: Feeder
+    3300002: FeederBoard
+    3300004: FeederHinge
+    4300000: FeederHinge
+    4300002: FeederBoard
+    4300004: Lid
+    4300006: Feeder
     7400000: Default Take
-    7400002: Open
-    7400004: Close
+    7400002: Close
+    7400004: Open
     9500000: //RootNode
     13700000: Lid
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -74,7 +69,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

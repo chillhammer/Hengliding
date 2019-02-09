@@ -7,12 +7,11 @@ namespace Raising.Interaction {
 		public Animator feederAnimator;
 
 		void OnMouseEnter() {
-			feederAnimator.SetTrigger("Open");
+			feederAnimator.SetBool("isOpen", true);
 		}
 
 		void OnMouseExit() {
-			feederAnimator.SetTrigger("Close");
-
+			feederAnimator.SetBool("isOpen", false);
 		}
 
 		void OnMouseDown() {
