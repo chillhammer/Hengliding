@@ -6,21 +6,40 @@ ModelImporter:
     100000: //RootNode
     100002: Feeder
     100004: Lid
+    100006: Armature
+    100008: Bone
+    100010: FeederBoard
+    100012: FeederHinge
     400000: //RootNode
     400002: Feeder
     400004: Lid
+    400006: Armature
+    400008: Bone
+    400010: FeederBoard
+    400012: FeederHinge
     2100000: unnamed
+    2100002: Lid
+    2100004: Hinge
     2300000: //RootNode
     2300002: Feeder
     2300004: Lid
+    2300006: FeederBoard
+    2300008: FeederHinge
     3300000: //RootNode
     3300002: Feeder
     3300004: Lid
+    3300006: FeederBoard
+    3300008: FeederHinge
     4300000: Cube
     4300002: Lid
     4300004: Feeder
+    4300006: FeederHinge
+    4300008: FeederBoard
     7400000: Default Take
+    7400002: Open
+    7400004: Close
     9500000: //RootNode
+    13700000: Lid
   externalObjects: {}
   materials:
     importMaterials: 1
