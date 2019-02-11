@@ -5,6 +5,7 @@ namespace Raising.Interaction {
 	public class Feeder : MonoBehaviour {
 
 		public Animator feederAnimator;
+		public GameObject foodPrefab;
 
 		void OnMouseEnter() {
 			feederAnimator.SetBool("isOpen", true);
@@ -15,6 +16,7 @@ namespace Raising.Interaction {
 		}
 
 		void OnMouseDown() {
+			Instantiate(foodPrefab, gameObject.transform.position + new Vector3(0, 1, 0), foodPrefab.transform.rotation);
 		}
 
 		void OnMouseDrag() {

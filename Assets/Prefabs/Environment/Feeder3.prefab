@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 472703403}
   - component: {fileID: 472703404}
   m_Layer: 0
-  m_Name: Feeder3MaybeBroken
+  m_Name: Feeder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,6 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feederAnimator: {fileID: 472703402}
+  foodPrefab: {fileID: 1690970087183165799, guid: 2c173e4f12b694343bbc49c99f4beb6b,
+    type: 3}
 --- !u!1 &534496432
 GameObject:
   m_ObjectHideFlags: 0
