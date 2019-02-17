@@ -132,6 +132,10 @@ MonoBehaviour:
   rb: {fileID: 3436910398443187085}
   pitch: 0
   yaw: 0
+  collisionExplosion: {fileID: 1000635545899053043, guid: 737c51cfdc39ca4439fe84c082ac98ac,
+    type: 3}
+  eyeL: {fileID: 0}
+  eyeR: {fileID: 0}
 --- !u!54 &3436910398443187085
 Rigidbody:
   m_ObjectHideFlags: 0
