@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HenHouse
+  m_Name: Hen
   m_Shader: {fileID: 4800000, guid: 965ca89872ee1cf458c96cd2bc5a1de0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -39,8 +39,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Glossiness:
+        m_Texture: {fileID: 2800000, guid: 9579c1839c926414d96f6b8787bbe8f3, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3c767e5258acaef4a877ab72f3dd61a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -49,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 2800000, guid: 41b86103a945e164f9250d4821f453b5, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -70,11 +74,11 @@ Material:
     - _Distortion: 0.25
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: -0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NormalPower: 1
+    - _NormalPower: 0.22
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Power: 4.31
@@ -85,5 +89,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8962264, g: 0.5030705, b: 0.5030705, a: 1}
+    - _Color: {r: 1, g: 0.8092243, b: 0.7028302, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
