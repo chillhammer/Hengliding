@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 0
-  el: 0.02
-  ail: 0.02
-  rud: 0.00125
+  el: 0.001
+  ail: 0.002
+  rud: 0.0001
   span: 0.7
   cord: 0.3
   cl0: 0.1
   cd0: 0.01
   rho: 1.225
+  indicator: {fileID: 0}
 --- !u!1001 &7223725168819829735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 8279269569837443053, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.3
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 8279269569837443053, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
@@ -87,11 +88,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436910398443187085, guid: 9338d3fdf4e877044ae191e77a11b3b0,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3436910398443187085, guid: 9338d3fdf4e877044ae191e77a11b3b0,
         type: 3}
