@@ -1,24 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Glider : MonoBehaviour {
 
 	private Rigidbody rb;
 	public float thrust = 0;
-	public float el = 0.4f;
-	public float ail = 0.4f;
-	public float rud = 0.4f;
-	public float span = 2;
-	public float cord = 0.5f;
+	public float el = 0.002f;
+	public float ail = 0.002f;
+	public float rud = 0.000125f;
+	public float span = .7f;
+	public float cord = 0.3f;
 	private float AR;
 	public float cl0 = 0.1f;
 	public float cd0 = 0.01f;
 	public float rho = 1.225f;
+	public bool rollYawCoupled = false;
+	public Text indicator;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		rb.inertiaTensor = new Vector3(.1f,.1f,.1f);
+		rb.maxAngularVelocity = 5;
 		AR = Mathf.Pow(span, 2) / cord;
 		Cursor.lockState = CursorLockMode.Locked;
 	}
@@ -42,31 +47,39 @@ public class Glider : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		// if (Input.GetKey(KeyCode.W)) {
-		// 	rb.AddTorque(transform.right * el);
-		// }
-		// if (Input.GetKey(KeyCode.A)) {
-		// 	rb.AddTorque(transform.forward * ail);
-		// }
-		// if (Input.GetKey(KeyCode.S)) {
-		// 	rb.AddTorque(-transform.right * el);
-		// }
-		// if (Input.GetKey(KeyCode.D)) {
-		// 	rb.AddTorque(-transform.forward * ail);
-		// }
+		if (Input.GetMouseButtonUp(0)) {
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+		if (Input.GetMouseButtonDown(0)) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
 		if (Input.GetMouseButton(0)) {
-			float axisH = Input.GetAxis("Horizontal")/100;
-			float axisV = Input.GetAxis("Vertical")/100;
+			float axisH = 2*(Input.mousePosition.x - Screen.width/2)/Screen.width;
+			float axisV = 2*(Input.mousePosition.y - Screen.height/2)/Screen.height;
 			axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
-			axisV = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisV);
-			rb.AddTorque((transform.up * rud - transform.forward * ail) * axisH * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
-			rb.AddTorque(transform.right * el * axisV * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
+			if (rollYawCoupled) {
+				rb.AddTorque((-transform.forward * ail * axisH - transform.up * rud * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			} else {
+				rb.AddTorque((-transform.forward * ail * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			}
+		}
+		if (!rollYawCoupled) {
+			float rudder = 0;
+			if (Input.GetKey(KeyCode.A)) {
+				rudder -= 1;
+			}
+			if (Input.GetKey(KeyCode.D)) {
+				rudder += 1;
+			}
+			rb.AddTorque(transform.up * rud * rudder * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
 		}
 		
 
 		Vector3 lift = aeroForce();
 		rb.AddForce(transform.forward * thrust + lift);
-		rb.AddForce(Vector3.down * 9.8f, ForceMode.Acceleration);
+		rb.AddForce(Vector3.down * 4.9f, ForceMode.Acceleration);
 	}
 
 	Vector3 aeroForce() {
@@ -75,8 +88,8 @@ public class Glider : MonoBehaviour {
 		Vector3 vel_b = R_eb.inverse.MultiplyVector(vel_e);
 
 		float alpha = Mathf.Atan2(-vel_b.y, vel_b.z);
-		// Debug.Log("alpha: " + alpha.ToString());
-		Debug.Log("Vel_b: " + vel_b.ToString());
+		// Debug.Log("Vel_b: " + vel_b.ToString());
+		indicator.text = string.Format("Airspeed: {0}\nAlpha: {1}", vel_b.magnitude, alpha);
 
 		float cl = 0;
 		float alphaCrit = Mathf.PI / 12;
@@ -102,17 +115,12 @@ public class Glider : MonoBehaviour {
 
 		float D = cd * 0.5f * rho * vel_b.sqrMagnitude * cord * span / 5;
 		float L = cl * 0.5f * rho * vel_b.sqrMagnitude * cord * span;
-		// Debug.Log("Lift: " + L.ToString());
-		// Debug.Log("Drag: " + D.ToString());
+
 
 		Matrix4x4 R_w = Matrix4x4.Rotate(Quaternion.Euler(alpha / Mathf.PI * 180, 0, 0));
-		// Debug.Log("R_w: " + R_w.ToString());
 		Vector3 force = R_w.MultiplyVector(L * Vector3.up - D * Vector3.forward);
-		force += Vector3.right * -Mathf.Sign(vel_b.x) * Mathf.Pow(vel_b.x,2) * rho * 0.5f;
-		// Debug.Log("Force_b: " + force.ToString());
+		force += Vector3.right * -Mathf.Sign(vel_b.x) * Mathf.Pow(vel_b.x,2) * rho * 0.5f / 5;
 		force = R_eb.MultiplyVector(force);
-		// Debug.Log("Lift: " + R_w.MultiplyVector(L * Vector3.up).ToString());
-		// Debug.Log("Drag: " + R_w.MultiplyVector( - D * Vector3.forward).ToString());
 
 		return force;
 	}
