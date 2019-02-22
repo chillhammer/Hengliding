@@ -16,6 +16,7 @@ public class Glider : MonoBehaviour {
 	public float cl0 = 0.1f;
 	public float cd0 = 0.01f;
 	public float rho = 1.225f;
+	public bool rollYawCoupled = false;
 	public Text indicator;
 
 	// Use this for initialization
@@ -58,16 +59,23 @@ public class Glider : MonoBehaviour {
 			float axisV = 2*(Input.mousePosition.y - Screen.height/2)/Screen.height;
 			axisH = Mathf.Min(Mathf.Abs(axisH), 1) * Mathf.Sign(axisH);
 			axisV = Mathf.Min(Mathf.Abs(axisV), 1) * Mathf.Sign(axisV);
-			rb.AddTorque((-transform.forward * ail * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			if (rollYawCoupled) {
+				rb.AddTorque((-transform.forward * ail * axisH - transform.up * rud * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			} else {
+				rb.AddTorque((-transform.forward * ail * axisH + transform.right * el * axisV) * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+			}
 		}
-		float rudder = 0;
-		if (Input.GetKey(KeyCode.A)) {
-			rudder -= 1;
+		if (!rollYawCoupled) {
+			float rudder = 0;
+			if (Input.GetKey(KeyCode.A)) {
+				rudder -= 1;
+			}
+			if (Input.GetKey(KeyCode.D)) {
+				rudder += 1;
+			}
+			rb.AddTorque(transform.up * rud * rudder * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
 		}
-		if (Input.GetKey(KeyCode.D)) {
-			rudder += 1;
-		}
-		rb.AddTorque(transform.up * rud * rudder * Mathf.Pow(Vector3.Dot(rb.velocity, transform.forward), 2));
+		
 
 		Vector3 lift = aeroForce();
 		rb.AddForce(transform.forward * thrust + lift);

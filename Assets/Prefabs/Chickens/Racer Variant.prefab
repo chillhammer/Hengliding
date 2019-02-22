@@ -21,6 +21,7 @@ MonoBehaviour:
   cl0: 0.1
   cd0: 0.01
   rho: 1.225
+  rollYawCoupled: 0
   indicator: {fileID: 0}
 --- !u!1001 &7223725168819829735
 PrefabInstance:
@@ -131,7 +132,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 8.792001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5932365475247129724, guid: 9338d3fdf4e877044ae191e77a11b3b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9338d3fdf4e877044ae191e77a11b3b0, type: 3}
 --- !u!1 &7791143779684347089 stripped
 GameObject:
