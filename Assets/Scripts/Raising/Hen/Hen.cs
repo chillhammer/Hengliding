@@ -15,19 +15,41 @@ namespace Raising {
 		public HenStateInput stateInput;
 
 		public HenBreed breed;
-		public Stat speed;
+		public Stat love;
+		public Stat size;
+		public Stat fitness;
+		public Stat featherQuality;
+
 
 		void Start() {
 			stateInput = new HenStateInput(this);
 			state = new HenIdleState(stateInput);
 
 			breed = HenBreed.RedStar;
-			speed = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+
+
+			//reinitialize these only if they were not already assigned by the spawner
+			if (love == null) {
+				love = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+			}
+			if (size == null) {
+				size = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+			}
+			if (fitness == null) {
+				fitness = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+			}
+			if (featherQuality == null) {
+				featherQuality = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
+			}			
 		}
 
 		void Update() {
 			state.run();
 			state.updateState();
+
+			//prevent flying away
+			// Rigidbody rb = GetComponent<Rigidbody>();
+			// rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 		}
 
 
@@ -59,7 +81,8 @@ namespace Raising {
 
 			//TODO increase love stat
 
-			StartCoroutine(speed.increase(1));
+			StartCoroutine(size.increase(1));
+			Debug.Log(size.value);
 			Destroy(foodItem.gameObject);
 		}
 
