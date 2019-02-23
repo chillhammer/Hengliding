@@ -47,12 +47,9 @@ namespace Raising {
 			state.run();
 			state.updateState();
 
-			//prevent tipping over
-			transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 			//prevent flying away
-			Rigidbody rb = GetComponent<Rigidbody>();
-			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			
+			// Rigidbody rb = GetComponent<Rigidbody>();
+			// rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 		}
 
 
@@ -85,6 +82,7 @@ namespace Raising {
 			//TODO increase love stat
 
 			StartCoroutine(size.increase(1));
+			Debug.Log(size.value);
 			Destroy(foodItem.gameObject);
 		}
 
