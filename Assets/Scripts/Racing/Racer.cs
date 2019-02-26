@@ -18,6 +18,8 @@ namespace Racing {
 		public float pitch = 0;
 		public float yaw = 0;
 
+		public GameObject collisionExplosion;
+
 		[SerializeField]
 		public Agent agent;
 
@@ -82,9 +84,15 @@ namespace Racing {
 		}
 
 		void OnCollisionEnter(Collision other) {
+			
 			if (other.gameObject.GetComponent<RaceCollidable>() != null) {
 				RaceCollidable collidable = other.gameObject.GetComponent<RaceCollidable>();
 				collidable.applyAllEffects(this);
+			} else if (other.relativeVelocity.magnitude > 3) {
+				GameObject explosion = GameObject.Instantiate(collisionExplosion);
+				explosion.transform.position = transform.position;
+				explosion.transform.parent = transform; // setting the parent here instead of during instantiation to avoid any potential scaling issues
+				explosion.transform.rotation = transform.rotation;
 			}
 		}
 
