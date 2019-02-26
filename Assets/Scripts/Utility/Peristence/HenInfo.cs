@@ -11,7 +11,7 @@ public class HenInfo
 
     //Increment this number every time you add, modify, or reorder fields in this class
     //To prevent trying to read old JSON saves from an incompatible format
-    public static int VERSION_NUMBER = 2;
+    public static int VERSION_NUMBER = 3;
 
 
     public string name;
@@ -32,6 +32,7 @@ public class HenInfo
 
     public HenInfo(Hen hen) {
         this.breedNumber = (int) hen.breed;
+        this.name = hen.henName;
         //TODO use correct stats
         this.sizeStat = hen.size.value;
         this.loveStat = hen.love.value;
