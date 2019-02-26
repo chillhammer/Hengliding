@@ -2321,7 +2321,7 @@ PrefabInstance:
       objectReference: {fileID: 971863099}
     - target: {fileID: 307251632, guid: c555d35f1806120428c0fe776d93691c, type: 3}
       propertyPath: rollYawCoupled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c555d35f1806120428c0fe776d93691c, type: 3}
