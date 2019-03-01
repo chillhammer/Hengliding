@@ -8,7 +8,7 @@ namespace Raising {
 		public HenSeekFoodState(HenStateInput input) : base(input) { }
 
 		override public void runOnce() {
-			Food target = input.hen.findNearbyFood();
+			Food target = input.hen.findNearbyItem<Food>();
 			if (target != null) {
 				//this scripted movmement can hopefully be replaced by real animations later
 				float foodSeekAcceleration = 0.02f; //TODO make this change depending on speed stat?

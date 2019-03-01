@@ -6,7 +6,7 @@ namespace Raising {
 
 		public HenIdleState(HenStateInput input) : base(input) { }
 
-		override public void runOnce() {}
+		override public void runOnce() { }
 
 		override public void run() {
 			Rigidbody rb = input.hen.GetComponent<Rigidbody>();
@@ -17,6 +17,8 @@ namespace Raising {
 		override public void updateState() {
 			if (input.foodNearby()) {
 				input.hen.state = new HenSeekFoodState(input);
+			} else if (input.bathNearby()) {
+				input.hen.state = new HenBatheState(input);
 			} else if (timeSinceStart() > 2) {
 				input.hen.state = new HenWanderState(input);
 			}
