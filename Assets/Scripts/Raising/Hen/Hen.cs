@@ -14,7 +14,7 @@ namespace Raising {
 		public HenState state;
 		public HenStateInput stateInput;
 
-		public string name;
+		public string henName;
 
 		public HenBreed breed;
 		public Stat love;
@@ -31,8 +31,8 @@ namespace Raising {
 
 
 			//reinitialize these only if they were not already assigned by the spawner
-			if (name == null) {
-				name = "Hen McHenface";
+			if (henName == null) {
+				henName = "Hen McHenface";
 			}
 			if (love == null) {
 				love = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
