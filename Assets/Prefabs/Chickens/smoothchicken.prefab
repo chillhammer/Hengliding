@@ -572,6 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   henName: 
   breed: 0
+  bathingParticles: {fileID: 6198059792538825339, guid: c9aa4238ddbd85d488f82f077f21b753,
+    type: 3}
 --- !u!1 &4697752860385529104
 GameObject:
   m_ObjectHideFlags: 0

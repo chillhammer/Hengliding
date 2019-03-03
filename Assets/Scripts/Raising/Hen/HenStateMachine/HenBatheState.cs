@@ -28,12 +28,12 @@ namespace Raising {
 			input.hen.transform.position = bath.gameObject.transform.position + new Vector3(0, 0.5f, 0);
 			input.hen.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 			input.hen.GetComponent<Animator>().SetTrigger("inWater");
-
+			Object.Instantiate(input.hen.bathingParticles, input.hen.transform.position, input.hen.bathingParticles.transform.rotation, bath.gameObject.transform);
 		}
 
 		override public void run() {
 			if (timeSinceStart() > 3) {
-				input.hen.bathe(bath);
+				input.hen.finishBath(bath);
 				input.hen.transform.position = beforeBathingPos;
 			}
 		}

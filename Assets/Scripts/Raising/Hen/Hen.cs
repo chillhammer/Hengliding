@@ -22,6 +22,7 @@ namespace Raising {
 		public Stat fitness;
 		public Stat featherQuality;
 
+		public GameObject bathingParticles;
 
 		void Start() {
 			stateInput = new HenStateInput(this);
@@ -88,7 +89,7 @@ namespace Raising {
 			Destroy(foodItem.gameObject);
 		}
 
-		public void bathe(Bath bath) {
+		public void finishBath(Bath bath) {
 			StartCoroutine(size.increase(1));
 			bath.unFill();
 		}
