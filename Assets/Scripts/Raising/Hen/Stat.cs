@@ -34,8 +34,7 @@ namespace Raising {
 			GameObject icon = Object.Instantiate(
 				increaseIcon,
 				startPos,
-				increaseIcon.transform.rotation,
-				hen.transform
+				increaseIcon.transform.rotation
 			);
 
 			yield return Util.Lerp(Stat.STAT_INCREASE_ICON_TIME, progress => {

@@ -90,7 +90,7 @@ namespace Raising {
 		}
 
 		public void finishBath(Bath bath) {
-			StartCoroutine(size.increase(1));
+			StartCoroutine(featherQuality.increase(1));
 			bath.unFill();
 		}
 
