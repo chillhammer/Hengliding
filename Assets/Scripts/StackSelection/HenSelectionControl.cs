@@ -13,6 +13,8 @@ public class HenSelectionControl : MonoBehaviour
 
     List<StackSelectionListItem> listItems;
 
+    public StartRaceButton StartButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +52,10 @@ public class HenSelectionControl : MonoBehaviour
 
         RaceStatsCalculator.calculateStats(selectedHens);
         displayBox.updateStats();
+        StartButton.updateButton();
     }
+
+    
 
     
 
