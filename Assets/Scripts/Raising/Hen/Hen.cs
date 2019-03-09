@@ -85,21 +85,7 @@ namespace Raising {
 
 			//TODO GUI for stats
 
-			int tempRand = Random.Range(0, 4);
-			switch (tempRand) {
-				case 0:
-					StartCoroutine(size.increase(1));
-					break;
-				case 1:
-					StartCoroutine(love.increase(1));
-					break;
-				case 2:
-					StartCoroutine(fitness.increase(1));
-					break;
-				case 3:
-					StartCoroutine(featherQuality.increase(1));
-					break;
-			}
+			StartCoroutine(size.increase(1));
 
 			Destroy(foodItem.gameObject);
 		}
