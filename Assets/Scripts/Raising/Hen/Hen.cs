@@ -14,12 +14,15 @@ namespace Raising {
 		public HenState state;
 		public HenStateInput stateInput;
 
+		public string henName;
+
 		public HenBreed breed;
 		public Stat love;
 		public Stat size;
 		public Stat fitness;
 		public Stat featherQuality;
 
+		public GameObject bathingParticles;
 
 		void Start() {
 			stateInput = new HenStateInput(this);
@@ -29,6 +32,9 @@ namespace Raising {
 
 
 			//reinitialize these only if they were not already assigned by the spawner
+			if (henName == null) {
+				henName = "Hen McHenface";
+			}
 			if (love == null) {
 				love = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
 			}
@@ -40,7 +46,7 @@ namespace Raising {
 			}
 			if (featherQuality == null) {
 				featherQuality = new Stat(this, 0, Resources.Load<GameObject>("Prefabs/SpeedIncrease"));
-			}			
+			}
 		}
 
 		void Update() {
@@ -61,7 +67,7 @@ namespace Raising {
 			yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 			transform.Rotate(new Vector3(0, Random.Range(0, 359), 0), Space.World);
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
-			GetComponent<Rigidbody>().velocity += transform.right * 0.5f;
+			GetComponent<Rigidbody>().velocity += transform.forward * -1 * 0.5f;
 			yield return new WaitForSeconds(Random.Range(1f, 2f));
 			GetComponent<Rigidbody>().velocity += new Vector3(0, 0, 0);
 			yield return new WaitForSeconds(Random.Range(3f, 6f));
@@ -79,31 +85,35 @@ namespace Raising {
 
 			//TODO GUI for stats
 
-			//TODO increase love stat
-
 			StartCoroutine(size.increase(1));
-			Debug.Log(size.value);
+
 			Destroy(foodItem.gameObject);
 		}
 
-		//returns the closest food item within the Hen's awareness sphere, or null if there is no such food item
-		public Food findNearbyFood() {
+		public void finishBath(Bath bath) {
+			StartCoroutine(featherQuality.increase(1));
+			bath.unFill();
+		}
+
+
+		//returns the closest T item within the Hen's awareness sphere, or null if there is no such food item
+		public T findNearbyItem<T>() where T : MonoBehaviour {
 			Collider[] detectionColliders = Physics.OverlapSphere(this.transform.position, Hen.AWARENESS_RADIUS);
 
-			List<Food> nearbyFoodList = new List<Food>();
+			List<T> nearbyItemList = new List<T>();
 			foreach (Collider c in detectionColliders) {
-				Food f = c.gameObject.GetComponent<Food>();
+				T f = c.gameObject.GetComponent<T>();
 				if (f != null) {
-					nearbyFoodList.Add(f);
+					nearbyItemList.Add(f);
 				}
 			}
 
-			if (nearbyFoodList.Count == 0) {
-				return null;
+			if (nearbyItemList.Count == 0) {
+				return default(T);
 			}
 
-			float nearestDist = nearbyFoodList.Min(food => Vector3.Distance(this.transform.position, food.transform.position));
-			return nearbyFoodList.First(food => nearestDist == Vector3.Distance(this.transform.position, food.transform.position));
+			float nearestDist = nearbyItemList.Min(food => Vector3.Distance(this.transform.position, food.transform.position));
+			return nearbyItemList.First(food => nearestDist == Vector3.Distance(this.transform.position, food.transform.position));
 
 		}
 	}

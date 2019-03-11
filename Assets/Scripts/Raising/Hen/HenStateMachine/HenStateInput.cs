@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Raising.Interaction;
 
 namespace Raising {
 
@@ -15,7 +16,17 @@ namespace Raising {
 
 
 		public bool foodNearby() {
-			return (hen.findNearbyFood() != null);
+			return (hen.findNearbyItem<Food>() != null);
+		}
+
+		public bool bathNearby() {
+			Bath nearbyBath = hen.findNearbyItem<Bath>();
+
+			if (nearbyBath != null && nearbyBath.filled) {
+				return true;
+			}
+
+			return false;
 		}
 
 

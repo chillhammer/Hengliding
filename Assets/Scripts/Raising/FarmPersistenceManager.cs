@@ -12,19 +12,15 @@ namespace Raising {
             StartCoroutine(autosave());
         }
 
-       
-
-
     private void saveFlock() {
         //TODO get chickens
         Hen[] flock = FindObjectsOfType<Hen>();
         List<HenInfo> records = new List<HenInfo>();
 
-
-
         foreach (Hen obj in flock) {
             records.Add(new HenInfo(obj));
         }
+
         HenInfoPersist.saveList(records);
 
     }

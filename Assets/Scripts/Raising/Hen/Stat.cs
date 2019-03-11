@@ -31,15 +31,18 @@ namespace Raising {
 			Vector3 startPos = hen.transform.position + new Vector3(0, 0.2f, 0);
 			Vector3 endPos = startPos + new Vector3(0, 0.4f, 0);
 
+			Quaternion startRot = increaseIcon.transform.rotation * Quaternion.Euler(0, 0, Random.Range(0, 360));
+			Quaternion endRot = startRot * Quaternion.Euler(0, 0, Random.Range(0, 360));
+
 			GameObject icon = Object.Instantiate(
 				increaseIcon,
 				startPos,
-				increaseIcon.transform.rotation,
-				hen.transform
+				increaseIcon.transform.rotation
 			);
 
 			yield return Util.Lerp(Stat.STAT_INCREASE_ICON_TIME, progress => {
 				icon.transform.position = Vector3.Lerp(startPos, endPos, Mathf.Pow(progress, 0.33f));
+				icon.transform.rotation = Quaternion.Lerp(startRot, endRot, Mathf.Pow(progress, 0.33f));
 			});
 
 			yield return new WaitForSeconds(0.5f);
